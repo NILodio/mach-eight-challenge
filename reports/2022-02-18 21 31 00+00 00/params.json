@@ -1,0 +1,36 @@
+{
+    "result": [
+        {
+            "NBA_Pair_1": [
+                {
+                    "first_name": "Nate",
+                    "h_in": "69",
+                    "h_meters": "1.75",
+                    "last_name": "Robinson"
+                },
+                {
+                    "first_name": "Speedy",
+                    "h_in": "71",
+                    "h_meters": "1.8",
+                    "last_name": "Claxton"
+                }
+            ]
+        },
+        {
+            "NBA_Pair_2": [
+                {
+                    "first_name": "Mike",
+                    "h_in": "70",
+                    "h_meters": "1.78",
+                    "last_name": "Wilks"
+                },
+                {
+                    "first_name": "Brevin",
+                    "h_in": "70",
+                    "h_meters": "1.78",
+                    "last_name": "Knight"
+                }
+            ]
+        }
+    ]
+}
