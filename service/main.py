@@ -2,14 +2,14 @@
 # @Author: Danilo Diaz Valencia
 # @Date:   2022-02-18 16:32:35
 # @Last Modified by:   Danilo Diaz Valencia
-# @Last Modified time: 2022-02-18 17:38:25
+# @Last Modified time: 2022-02-19 12:59:36
 import sys
 import os
 import typing as t
 from datetime import datetime
 from functools import lru_cache
 from modelling import app as logic
-from service.schema import ResultNBAPair
+from starlette.responses import RedirectResponse
 
 from fastapi import FastAPI, Depends, Body, Path  # type: ignore # noqa: E402
 from pydantic import BaseSettings, PositiveFloat
@@ -17,6 +17,13 @@ from pydantic import BaseSettings, PositiveFloat
 
 app = FastAPI(
     title="API to make NBA Player Pair based of heights", version="0.0.1")
+
+
+@app.get("/", include_in_schema=False)
+async def index():
+    return RedirectResponse(url="/docs")
+
+
 
 
 class Settings(BaseSettings):
@@ -40,7 +47,6 @@ def load_data():
 async def nba_pairs(
         value: int = Path(...),
         data=Depends(load_data)):
-    
     row = logic.DataInValues(data)
     row.findpairs(value = value)
     result = row.get_pairs()

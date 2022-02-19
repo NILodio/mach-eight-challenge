@@ -2,7 +2,7 @@
 # @Author: Danilo Diaz Valencia
 # @Date:   2022-02-18 11:02:34
 # @Last Modified by:   Danilo Diaz Valencia
-# @Last Modified time: 2022-02-18 16:49:21
+# @Last Modified time: 2022-02-19 12:51:00
 import json
 import os
 import shutil
@@ -48,7 +48,7 @@ class DataInValues:
             if (t in self.hashmap):
                 self.count += 1
                 self.result.append({f'NBA_Pair_{self.count}': [
-                                   self.data[i], self.data[self.hashmap[t]]]})
+                                   self.data[i]['first_name'] + ' ' + self.data[i]['last_name'], self.data[self.hashmap[t]]['first_name'] + ' ' + self.data[self.hashmap[t]]['last_name']]})
             self.hashmap[int(self.data[i]['h_in'])] = i
 
     def get_pairs(self):
@@ -59,7 +59,7 @@ class DataInValues:
 
 
 @app.command()
-def model(config_file: str, value: int , save_version : bool):
+def model(config_file: str, value: int, save_version: bool):
     data = _get_dataset(_load_config(config_file, "data"))
     object_value = DataInValues(data)
     object_value.findpairs(value=value)
@@ -70,6 +70,7 @@ def model(config_file: str, value: int , save_version : bool):
         return version
     else:
         return result
+
 
 def _get_dataset(data_config):
     url = data_config["url"]
