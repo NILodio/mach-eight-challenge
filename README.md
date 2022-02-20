@@ -100,8 +100,8 @@ pytest -co
 uvicorn service.main:app --reload
 
 ```
-![fastapi_test_1](images/fastapi_1.PNGpng)
+![fastapi_test_1](images/fastapi_1.png)
 
-![Test-fastapi_test_2](images/fastapi_2.PNGpng)
+![Test-fastapi_test_2](images/fastapi_2.png)
 
 
