@@ -30,7 +30,7 @@ above (139) will fail.
 
 ### Algorithm 
 
-This problem can be solved efficiently by using the technique of hashing. Use a hash_map to check for the current array value x(let), if there exists a value target_sum-x which on adding to the former gives target_sum. This can be done in constant time. Let’s look at the algorithm in [https://www.openintro.org/data/index.php?data=nba_heights)](`modelling/app.py`)
+This problem can be solved efficiently by using the technique of hashing. Use a hash_map to check for the current array value x(let), if there exists a value target_sum-x which on adding to the former gives target_sum. This can be done in constant time. Let’s look at the algorithm in [`modelling/app.py`](https://github.com/NILodio/mach-eight-challenge/blob/master/modelling/app.py)
 
 #### Complexity Analysis:
 
@@ -41,3 +41,38 @@ As the whole array is needed to be traversed only once.
 - Auxiliary Space: O(n).
 
 A hash map has been used to store array elements.
+
+.. code-block:: python
+
+  import aiohttp
+  import asyncio
+
+  async def main():
+
+      async with aiohttp.ClientSession() as session:
+          async with session.get('http://python.org') as response:
+
+              print("Status:", response.status)
+              print("Content-type:", response.headers['content-type'])
+
+              html = await response.text()
+              print("Body:", html[:15], "...")
+
+  loop = asyncio.get_event_loop()
+  loop.run_until_complete(main())
+
+```
+    def findpairs(self, value: int):
+        self.hashmap = {}
+        self.count = 0
+        for i in range(0, len(self.data)):
+            self.temp = []
+            v = int(self.data[i]['h_in'])
+            t = value - v
+            if (t in self.hashmap):
+                self.count += 1
+                self.result.append({f'NBA_Pair_{self.count}': [
+                                   self.data[i]['first_name'] + ' ' + self.data[i]['last_name'], self.data[self.hashmap[t]]['first_name'] + ' ' + self.data[self.hashmap[t]]['last_name']]})
+            self.hashmap[int(self.data[i]['h_in'])] = i
+
+```
