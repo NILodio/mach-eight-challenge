@@ -2,7 +2,7 @@
 # @Author: Danilo Diaz Valencia
 # @Date:   2022-02-18 16:32:35
 # @Last Modified by:   Danilo Diaz Valencia
-# @Last Modified time: 2022-02-19 12:59:36
+# @Last Modified time: 2022-02-20 11:38:46
 import sys
 import os
 import typing as t
@@ -10,6 +10,7 @@ from datetime import datetime
 from functools import lru_cache
 from modelling import app as logic
 from starlette.responses import RedirectResponse
+from starlette import status
 
 from fastapi import FastAPI, Depends, Body, Path  # type: ignore # noqa: E402
 from pydantic import BaseSettings, PositiveFloat
@@ -22,8 +23,6 @@ app = FastAPI(
 @app.get("/", include_in_schema=False)
 async def index():
     return RedirectResponse(url="/docs")
-
-
 
 
 class Settings(BaseSettings):
@@ -43,11 +42,13 @@ def load_data():
     return data
 
 
-@app.get("/get-nba/{value}")
+@app.get("/get-nba/{value}",
+         status_code=status.HTTP_200_OK,
+         name="🚩nba:get-pairs")
 async def nba_pairs(
         value: int = Path(...),
         data=Depends(load_data)):
     row = logic.DataInValues(data)
-    row.findpairs(value = value)
+    row.findpairs(value=value)
     result = row.get_pairs()
     return result
